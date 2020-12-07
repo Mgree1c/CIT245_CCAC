@@ -1,0 +1,102 @@
+#include<string>
+#include<iostream>
+using namespace std;
+class GiftListNode{
+  public:
+    GiftListNode(GiftListNode*p, string n, int o)    
+    :parent{p}, name{n}, order{o}
+{
+  childL = nullptr;
+  childR = nullptr;
+}
+GiftListNode* parent;
+string name;
+int order;
+GiftListNode* childL;
+GiftListNode* childR;
+};
+//below an empty pointer that can take us to a gift node but it doesn'take
+GiftListNode* giftTreeRoot;
+void in_order_tree_walk(GiftListNode* root){
+  if(root != nullptr){
+    in_order_tree_walk(root->childL);
+    cout<<root->name<<'\n';
+    in_order_tree_walk(root->childR);
+  }
+
+}
+ int main(){
+   cout<< "On Twelve Days of Christmas, I got: \n";
+   GiftListNode* node = new GiftListNode(nullptr, "Geese A-Laying", 6);
+   //assigning whatever node points to the object which are geese a-Laying
+   giftTreeRoot = node;
+   GiftListNode* tempParent = giftTreeRoot;
+   //we are making a new object, passing in a remote to its parent which the geese
+   node = new GiftListNode(tempParent, "Swans A-Swimming",7);
+   //assign to tempParent's right child whatever object node points to which are the geese a-Laying
+   tempParent->childR=node;
+   //assign tempParent to be whatever node it points to which are the swans a-swimming
+   tempParent = node;
+   //we are making a new object, passing in a remote to its parent which are the swans
+   node = new GiftListNode(tempParent, "Pipers Piping", 11);
+   //assign tempParent's left child to be whatever node it points to which are swans a-swimming
+   tempParent->childL=node;
+   //assign tempParent to be whatever node it points to which is pipers Piping
+   tempParent = node;
+   //we are making a new object, passing in a remote to its parent which are the pipers
+   node = new GiftListNode(tempParent, "Ladies Dancing", 9);
+   //assign tempParent's left child to be whatever node it points to which are the pipers
+   tempParent->childL=node;
+   //assign tempParent to whatever node it points to which are ladies dancing
+   tempParent = node;
+   //we are making a new object, passing in a remote to its parent which are the french hens
+   node = new GiftListNode(tempParent, "French Hens", 3);
+   //assign tempParent's left child to be whatever node it points to which are ladies dancing
+   tempParent->childL=node;
+   //assign tempParent to be whatever node to which are french hens
+   tempParent = node;
+   //we are making a new object, passing in a remote to its parent which are turtle doves
+   node = new GiftListNode(tempParent, "Turtle Doves", 2);
+   //assign tempParent's right child to be whatever node it points to which are french hens
+   tempParent->childR=node;
+   //assign tempParent to be whatever node it points to which are turtle doves
+   tempParent = node;
+   //we are making a new object, passing in a remote to its parent which are turtle doves
+   node = new GiftListNode(tempParent, "Maids A-Milking", 8);
+//assign tempParent's left child to be whatever node it points to which are turtle doves
+tempParent->childL=node;
+//assign tempParent to whatever node it points to which are maids a-milking
+tempParent = node;
+//we are making a new object, passing in a remote to its parent which are Golden Rings
+node = new GiftListNode(tempParent, "Golden Rings", 5);
+//assign tempParent's left child to be whatever node it points to which maids a milking
+tempParent->childL=node;
+//assign tempParent to be whatever node it points to which are Golden Rings
+tempParent = node;
+//we are making a new object, passing in a remote to its parent which calling birds
+node = new GiftListNode(tempParent, "Calling Birds", 4);
+//assign tempParent's left child to be whatever node it points to which are golden rings
+tempParent->childL=node;
+//assign tempParent to be whatever node to which are calling birds
+tempParent = node;
+//we are making a new object, passing in a remote to its parent which a partridge in a pear tree
+node = new GiftListNode(tempParent, "Partridge in a Pear Tree",1);
+//assign tempParent's right child to be whatever node it points to which are calling birds
+tempParent->childR=node;
+//assign tempParent to be whatever node it points to which is a partridge in a pear tree
+tempParent = node;
+//we are making a new object, passing in a remote to its parent which are drummers drumming
+node = new GiftListNode(tempParent, "Drummer Drumming", 12);
+//assign tempParent's left child to be whatever node it points to which is a partridge in a pear tree
+tempParent->childL=node;
+//assign tempParent to be whatever node it points to which are drummers drumming
+tempParent = node;
+node = new GiftListNode(tempParent, "Lords A-Leaping", 10);
+//assign temParent to whatever node it points to which are drummers drumming
+tempParent->childR=node;
+//assign tempParent to be whatever node it points to which are lords a-leaping
+tempParent = node;
+in_order_tree_walk(giftTreeRoot);
+
+
+ }
